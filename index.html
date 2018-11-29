@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  
+</head>
+<body>
+  <h1>Exchange Rates</h1>
+
+  <div class="container">
+    <section class="left">
+      <div>
+        Base: 
+        <select name="base-rate" id="base-rate">
+          <option value="EUR">EUR</option>
+          <option value="USD">USD</option>
+          <option value="GBP">GBP</option>
+          <option value="AUD">AUD</option>
+          <option value="CAD">CAD</option>
+          <option value="JPY">JPY</option>
+        </select>
+      </div>
+
+      <div>
+        Date:
+        <input type="date" name="rate-date" id="rate-date">
+      </div>
+
+      <button id="display">Display</button>
+    </section>
+    <section class="right">
+      <table id="rates-table">
+  
+      </table>
+    </section>
+  </div>
+  
+<script src="main.js"></script>
+<script src="Rate.js"></script>
+</body>
+</html>

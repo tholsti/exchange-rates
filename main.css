@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+
+@media screen and (max-width: 700px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+td {
+  padding: 0 3px 0 3px;
+}
+
+#sort {
+  cursor: pointer;
+}
