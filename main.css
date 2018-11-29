@@ -12,15 +12,26 @@ h1 {
   justify-content: space-evenly;
 }
 
-
 @media screen and (max-width: 700px) {
   .container {
     flex-direction: column;
   }
 }
 
+table {
+  border-collapse: collapse;
+}
+
+table, tr {
+  border: 1px solid black;
+}
+
 td {
-  padding: 0 3px 0 3px;
+  padding: .5em;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
 #sort {
