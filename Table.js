@@ -2,45 +2,68 @@ class Table {
   
   constructor() {
     this.rates = [];
+    this.sorted = null;
   }
   
-  render(baseSelection) {
+  render() {
     const main_currencies = ['EUR', 'USD', 'GBP', 'AUD', 'CAD', 'JPY']
     let table = document.getElementById('rates-table');
-    table.innerHTML = `
-      <tr class >
-      <td>Currency <span id="sort">SORT</span></td>
-      <td>Buy</td>
-      <td>Sell</td>
-      </tr>
-    `;
+    table.innerHTML = ""
 
-    for (let [key, rate] of Object.entries(this.rates)) {
-
+    function renderRow(col1, col2, col3, isFirstRow=false) {
       let row = document.createElement('tr');
-      let base = document.createElement('td');
+      let currency = document.createElement('td');
       let buy = document.createElement('td');
       let sell = document.createElement('td');
 
-      base.innerHTML = rate.base;
-      buy.innerHTML = rate.buy;
-      sell.innerHTML = rate.sell;
+      isFirstRow ? currency.addEventListener('click', () => {
+        exchangeTable.sortTable();
+      }) : null;
 
-      if (main_currencies.indexOf(rate.base) > -1) {
+      currency.innerHTML = col1;
+      buy.innerHTML = col2;
+      sell.innerHTML = col3;
+
+      if (isFirstRow == false && main_currencies.indexOf(col1) > -1) {
         row.style.color = 'red';
       }
       
-      if (baseSelection != rate.base) {
-        row.appendChild(base)
+      if (document.getElementById('base-rate').value != col1) {
+        row.appendChild(currency)
         row.appendChild(buy)
         row.appendChild(sell)
         table.appendChild(row)
       }
     }
+    
+    renderRow("Currency <span id=\"sort\">⥮</span>", "Buy", "Sell", true);
+
+    for (let [key, rate] of Object.entries(this.rates)) {      
+      renderRow(rate.currency, rate.buy, rate.sell)
+    }
   }
 
   sortTable() {
-    console.log("sort alphabetically")
-
+    if (this.sorted == null || this.sorted == "desc") {
+    this.rates.sort(function(a,b) {
+      if (a.currency < b.currency) {
+      return -1
+      } else return 1
+    })
+      this.sorted = "asc";
+    }
+    else 
+    {
+    this.rates.sort(function(a,b) {
+      if (a.currency < b.currency) {
+      return 1
+      } else return -1
+    })
+      this.sorted = "desc"}
+    
+    this.render()
   }
+
 }
+
+  

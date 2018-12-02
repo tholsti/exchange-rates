@@ -13,7 +13,7 @@
 
   <div class="container">
     <section class="left">
-      <div>
+      <div class="user-input">
         Base: 
         <select name="base-rate" id="base-rate">
           <option value="EUR">EUR</option>
@@ -25,12 +25,14 @@
         </select>
       </div>
 
-      <div>
+      <div  class="user-input" id="date-pick">
         Date:
-        <input type="date" name="rate-date" id="rate-date">
+        <input type="date" min="" name="rate-date" id="rate-date">
       </div>
-
-      <button id="display">Display</button>
+      <div id="validate"></div>
+      <div class="user-input">
+        <button id="display">Display</button>
+      </div>
     </section>
     <section class="right">
       <table id="rates-table">

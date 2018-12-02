@@ -2,6 +2,11 @@ class App {
 
   static getRates(date, base) {
     exchangeTable.rates = []
+    let today = new Date()
+  
+    if (today.toISOString() < date || date.substring(0,4) < 1999) {
+      document.getElementById('validate').innerHTML = `<div>Please choose a date between 1.1.1999 and ${today.getDate()}. ${today.getMonth() +1}. ${today.getFullYear()}</div>`
+    }
 
     fetch(`https://api.exchangeratesapi.io/${date}?base=${base}`)
       .then(response => response.json())
@@ -10,7 +15,7 @@ class App {
           let rate = new Rate(key, value)
           exchangeTable.rates.push(rate);
         }
-        exchangeTable.render(base);
+        exchangeTable.render();
       })
   }
 }
